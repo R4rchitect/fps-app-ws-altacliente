@@ -8,6 +8,7 @@ public class FpsAppWsAltaclienteApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(FpsAppWsAltaclienteApplication.class, args);
+		
 	}
 
 }
