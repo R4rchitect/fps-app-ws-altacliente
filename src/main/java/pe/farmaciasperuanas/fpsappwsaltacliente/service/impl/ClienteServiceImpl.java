@@ -1,5 +1,7 @@
 package pe.farmaciasperuanas.fpsappwsaltacliente.service.impl;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import pe.farmaciasperuanas.fpsappwsaltacliente.entity.Cliente;
@@ -18,6 +20,11 @@ public class ClienteServiceImpl implements ClienteService {
 	@Override
 	public void creacliente(Cliente cliente) {
 		clienteRepository.save(cliente);
+	}
+
+	@Override
+	public List<Cliente> listclientes() {
+		return clienteRepository.findAll();
 	}
     
 }

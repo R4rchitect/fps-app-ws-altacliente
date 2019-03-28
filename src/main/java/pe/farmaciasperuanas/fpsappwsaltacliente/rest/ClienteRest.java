@@ -1,5 +1,8 @@
 package pe.farmaciasperuanas.fpsappwsaltacliente.rest;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -7,6 +10,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import pe.farmaciasperuanas.fpsappwsaltacliente.facade.ClienteFacade;
 import pe.farmaciasperuanas.fpsappwsaltacliente.model.ClienteDTO;
+import pe.farmaciasperuanas.fpsappwsaltacliente.model.ClienteFechaDTO;
+
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,32 +29,18 @@ public class ClienteRest {
     }
     
     @PostMapping("creacliente")
-    public String creacliente(@RequestBody ClienteDTO clienteDTO) {
-        logger.info("=== (POST) /login START ===");
+    public ResponseEntity<String> creacliente(@RequestBody ClienteDTO clienteDTO) {
+        logger.info("Initializr @@PostMapping -> creacliente");
         logger.info(clienteDTO.toString());
         clienteFacade.creacliente(clienteDTO);
-        return "OK";
-    }
-
-   /* @PostMapping("login")
-    public Local login(@RequestBody Usuario usuario) {
-        logger.info("=== (POST) /login START ===");
-        logger.info(usuario.toString());
-        Local localLogin = usuarioFacade.login(usuario);
-        return localLogin;
-    }
-
-    @PostMapping("registrarUsuario")
-    public Usuario registrarUsuario(@RequestBody Usuario usuario) throws Exception{
-        logger.info("=== (POST) /registrarUsuario START ===");
-        Usuario usuarioTmp= usuarioFacade.registrarUsuario(usuario);
-        return usuarioTmp;
+        return new ResponseEntity<>("Created", HttpStatus.CREATED);
     }
     
-    @GetMapping("hi")
-    public String hi(){
-        logger.info("=== (POST) /registrarUsuario START ===");
-        return "Hi Joedayz";
-    }*/
+    @GetMapping("listclientes")
+    public ResponseEntity<List<ClienteFechaDTO>> listclientes(){
+        logger.info("Initializr @GetMapping -> listclientes ");
+        
+        return new ResponseEntity<>(clienteFacade.listclientes(), HttpStatus.OK);
+    }
 
 }

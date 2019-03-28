@@ -14,8 +14,11 @@ import java.util.List;
 @Repository("clienteRepository")
 public interface ClienteRepository extends CrudRepository<Cliente, Long> {
 	
-    /*public abstract Cliente findById(int id);
+    public Cliente findByNombre(String nombre);
+    
+    public List<Cliente> findAll();
 
+    /*
     public abstract Cliente findByNombres(String nombres);
 
     @Query(value="SELECT * FROM cliente where fecha_registro between :fecha_inicio and :fecha_final", nativeQuery=true)
